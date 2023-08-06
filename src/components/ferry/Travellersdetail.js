@@ -3159,8 +3159,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>               
             </div>
             <div id='showpaymentpage' style={{display:"none"}}>
                 {<PaymentGatewayPage />}

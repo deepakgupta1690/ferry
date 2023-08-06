@@ -242,7 +242,7 @@ const NItoPb = () => {
             </div>                
           </div>
           <div className='row ferrydetail' style={{marginTop:"5%"}}> 
-            {/* Green Ocean ferry  */}
+            {/* Red Ocean ferry  */}
             <div className='container'>
                 <div className='row'>
                   <div className='col-8'>
