@@ -6,21 +6,55 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import Oneway from './Oneway';
+import PbtoHvl from './PbtoHvl';
 import Travellersdetail from './Travellersdetail';
-import Roundtrip1 from './Roundtrip1';
-import Roundtrip2 from './Roundtrip2';
-import Multipletrip1 from './Multipletrip1';
-import Multipletrip2 from './Multipletrip2';
-import Multipletrip3 from './Multipletrip3';
-import Multipletrip4 from './Multipletrip4';
-import Multipletrip5 from './Multipletrip5';
+import PbtoNI from './PbtoNI';
+import HvltoPb from './HvltoPb';
+import HvltoNI from './HvltoNI';
+import NItoPb from './NItoPb';
+import NItoHvl from './NItoHvl';
+import PbtoHvlrt2 from './PbtoHvlrt2';
+import PbtoNIrt2 from './PbtoNIrt2';
+import HvltoPbrt2 from './HvltoPbrt2';
+import HvltoNIrt2 from './HvltoNIrt2';
+import NItoPbrt2 from './NItoPbrt2';
+import NItoHvlrt2 from './NItoHvlrt2';
+import PbtoHvlmt1 from './PbtoHvlmt1';
+import PbtoNImt1 from './PbtoNImt1';
+import HvltoPbmt1 from './HvltoPbmt1';
+import HvltoNImt1 from './HvltoNImt1';
+import NItoPbmt1 from './NItoPbmt1';
+import NItoHvlmt1 from './NItoHvlmt1';
+import PbtoHvlmt2 from './PbtoHvlmt2';
+import PbtoNImt2 from './PbtoNImt2';
+import HvltoPbmt2 from './HvltoPbmt2';
+import HvltoNImt2 from './HvltoNImt2';
+import NItoPbmt2 from './NItoPbmt2';
+import NItoHvlmt2 from './NItoHvlmt2';
+import PbtoHvlmt3 from './PbtoHvlmt3';
+import PbtoNImt3 from './PbtoNImt3';
+import HvltoPbmt3 from './HvltoPbmt3';
+import HvltoNImt3 from './HvltoNImt3';
+import NItoPbmt3 from './NItoPbmt3';
+import NItoHvlmt3 from './NItoHvlmt3';
+import PbtoHvlmt4 from './PbtoHvlmt4';
+import PbtoNImt4 from './PbtoNImt4';
+import HvltoPbmt4 from './HvltoPbmt4';
+import HvltoNImt4 from './HvltoNImt4';
+import NItoPbmt4 from './NItoPbmt4';
+import NItoHvlmt4 from './NItoHvlmt4';
+import PbtoHvlmt5 from './PbtoHvlmt5';
+import PbtoNImt5 from './PbtoNImt5';
+import HvltoPbmt5 from './HvltoPbmt5';
+import HvltoNImt5 from './HvltoNImt5';
+import NItoPbmt5 from './NItoPbmt5';
+import NItoHvlmt5 from './NItoHvlmt5';
 
   const initialState = {
     selectedOption: '',
     options: [
       { value: 'PortBlair', label: 'Port Blair' },
-      { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+      { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
       { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
     ]
   };
@@ -32,12 +66,12 @@ import Multipletrip5 from './Multipletrip5';
           ...state,
           selectedOption: action.value,
           options: [
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
             { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
           ]
         };
       } 
-      if (action.value === 'Havelock (Swaraj Dweep)') {
+      if (action.value === 'Havelock') {
         return {
           ...state,
           selectedOption: action.value,
@@ -53,7 +87,7 @@ import Multipletrip5 from './Multipletrip5';
           selectedOption: action.value,
           options: [
             { value: 'PortBlair', label: 'PortBlair' },
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' }
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' }
           ]
         };
       } 
@@ -66,7 +100,7 @@ import Multipletrip5 from './Multipletrip5';
     selectedOption1: '',
     options1: [
       { value: 'PortBlair', label: 'Port Blair' },
-      { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+      { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
       { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
     ]
   };
@@ -78,12 +112,12 @@ import Multipletrip5 from './Multipletrip5';
           ...state1,
           selectedOption1: action.value,
           options1: [
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
             { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
           ]
         };
       } 
-      if (action.value === 'Havelock (Swaraj Dweep)') {
+      if (action.value === 'Havelock') {
         return {
           ...state1,
           selectedOption1: action.value,
@@ -99,7 +133,7 @@ import Multipletrip5 from './Multipletrip5';
           selectedOption1: action.value,
           options1: [
             { value: 'PortBlair', label: 'PortBlair' },
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' }
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' }
           ]
         };
       } 
@@ -112,7 +146,7 @@ import Multipletrip5 from './Multipletrip5';
     selectedOption2: '',
     options2: [
       { value: 'PortBlair', label: 'Port Blair' },
-      { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+      { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
       { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
     ]
   };
@@ -124,12 +158,12 @@ import Multipletrip5 from './Multipletrip5';
           ...state2,
           selectedOption2: action.value,
           options2: [
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
             { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
           ]
         };
       } 
-      if (action.value === 'Havelock (Swaraj Dweep)') {
+      if (action.value === 'Havelock') {
         return {
           ...state2,
           selectedOption2: action.value,
@@ -145,7 +179,7 @@ import Multipletrip5 from './Multipletrip5';
           selectedOption2: action.value,
           options2: [
             { value: 'PortBlair', label: 'PortBlair' },
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' }
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' }
           ]
         };
       } 
@@ -158,7 +192,7 @@ import Multipletrip5 from './Multipletrip5';
     selectedOption3: '',
     options3: [
       { value: 'PortBlair', label: 'Port Blair' },
-      { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+      { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
       { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
     ]
   };
@@ -170,12 +204,12 @@ import Multipletrip5 from './Multipletrip5';
           ...state3,
           selectedOption3: action.value,
           options3: [
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
             { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
           ]
         };
       } 
-      if (action.value === 'Havelock (Swaraj Dweep)') {
+      if (action.value === 'Havelock') {
         return {
           ...state3,
           selectedOption3: action.value,
@@ -191,7 +225,7 @@ import Multipletrip5 from './Multipletrip5';
           selectedOption3: action.value,
           options3: [
             { value: 'PortBlair', label: 'PortBlair' },
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' }
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' }
           ]
         };
       } 
@@ -204,7 +238,7 @@ import Multipletrip5 from './Multipletrip5';
     selectedOption4: '',
     options4: [
       { value: 'PortBlair', label: 'Port Blair' },
-      { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+      { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
       { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
     ]
   };
@@ -216,12 +250,12 @@ import Multipletrip5 from './Multipletrip5';
           ...state4,
           selectedOption4: action.value,
           options4: [
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' },
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' },
             { value: 'Neil Island (Shaheed Dweep)', label: 'Neil Island (Shaheed Dweep)' }
           ]
         };
       } 
-      if (action.value === 'Havelock (Swaraj Dweep)') {
+      if (action.value === 'Havelock') {
         return {
           ...state4,
           selectedOption4: action.value,
@@ -237,7 +271,7 @@ import Multipletrip5 from './Multipletrip5';
           selectedOption4: action.value,
           options4: [
             { value: 'PortBlair', label: 'PortBlair' },
-            { value: 'Havelock (Swaraj Dweep)', label: 'Havelock (Swaraj Dweep)' }
+            { value: 'Havelock', label: 'Havelock (Swaraj Dweep)' }
           ]
         };
       } 
@@ -246,7 +280,7 @@ import Multipletrip5 from './Multipletrip5';
     return state4;
   }
 
-export const Ferry = () => {
+export const Ferry1 = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [state1, dispatch1] = useReducer(reducer1, initialState1);
     const [state2, dispatch2] = useReducer(reducer2, initialState2);
@@ -313,92 +347,69 @@ export const Ferry = () => {
     const onewayOptionChangefrom = (event) => {
       dispatch({ type: 'SELECT_OPTION', value: event.target.value });
       setOwFrom(event.target.value);
-      document.getElementById("owfromerror").style.display = 'none';
-      document.getElementById("owfrom").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const onewayOptionChange = (event) => {
       setOwTo(event.target.value);
-      document.getElementById("owtoerror").style.display = 'none';
-      document.getElementById("owto").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const roundtripOptionChangefrom = (event) => {
       dispatch({ type: 'SELECT_OPTION', value: event.target.value });
       setRtFrom(event.target.value);
-      document.getElementById("rtfromerror").style.display = 'none';
-      document.getElementById("rtfrom").style.borderColor = 'rgba(0,0,0,.16)';
     };
+
+    // const roundtripOptionChangefrom1 = (event) => {
+    //   dispatch({ type: 'SELECT_OPTION', value: event.target.value });
+    //   setRtFrom1(event.target.value);
+    // };
 
     const roundtripOptionChange = (event) => {
       setRtTo(event.target.value);
-      document.getElementById("rttoerror").style.display = 'none';
-      document.getElementById("rtto").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChange = (event) => {
       dispatch({ type: 'SELECT_OPTION', value: event.target.value });
       setFrom(event.target.value);
-      document.getElementById("mtfromerror").style.display = 'none';
-      document.getElementById("mtfrom").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChangetrip2 = (event) => {
       dispatch1({ type: 'SELECT_OPTION1', value: event.target.value });
       setFrom1(event.target.value);
-      document.getElementById("mtfrom1error").style.display = 'none';
-      document.getElementById("mtfrom1").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChangetrip3 = (event) => {
       dispatch2({ type: 'SELECT_OPTION2', value: event.target.value });
       setFrom2(event.target.value);
-      document.getElementById("mtfrom2error").style.display = 'none';
-      document.getElementById("mtfrom2").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChangetrip4 = (event) => {
       dispatch3({ type: 'SELECT_OPTION3', value: event.target.value });
       setFrom3(event.target.value);
-      document.getElementById("mtfrom3error").style.display = 'none';
-      document.getElementById("mtfrom3").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChangetrip5 = (event) => {
       dispatch4({ type: 'SELECT_OPTION4', value: event.target.value });
       setFrom4(event.target.value);
-      document.getElementById("mtfrom4error").style.display = 'none';
-      document.getElementById("mtfrom4").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChange1 = (event) => {
       setTo(event.target.value);
-      document.getElementById("mttoerror").style.display = 'none';
-      document.getElementById("mtto").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChange2 = (event) => {
       setTo1(event.target.value);
-      document.getElementById("mtto1error").style.display = 'none';
-      document.getElementById("mtto1").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChange3 = (event) => {
       setTo2(event.target.value);
-      document.getElementById("mtto2error").style.display = 'none';
-      document.getElementById("mtto2").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChange4 = (event) => {
       setTo3(event.target.value);
-      document.getElementById("mtto3error").style.display = 'none';
-      document.getElementById("mtto3").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleOptionChange5 = (event) => {
       setTo4(event.target.value);
-      document.getElementById("mtto4error").style.display = 'none';
-      document.getElementById("mtto4").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const [selectedDate, setSelectedDate] = useState(null);
@@ -414,54 +425,38 @@ export const Ferry = () => {
   
     const owhandleDateChange = (event) => {
       setOwDate(event.target.value);
-      document.getElementById("owdateerror").style.display = 'none';
-      document.getElementById("owdate").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const rt1handleDateChange = (event) => {
       setRt1Date(event.target.value);
-      document.getElementById("rtdateerror").style.display = 'none';
-      document.getElementById("rtdate").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const rt2handleDateChange = (event) => {
       setRt2Date(event.target.value);
-      document.getElementById("rt1dateerror").style.display = 'none';
-      document.getElementById("rt1date").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleDateChange = (event) => {
       setSelectedDate(event.target.value);
-      document.getElementById("mtdateerror").style.display = 'none';
-      document.getElementById("mtdate").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleDateChange1 = (event) => {
       setSelectedDate1(event.target.value);
-      document.getElementById("mtdate1error").style.display = 'none';
-      document.getElementById("mtdate1").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleDateChange2 = (event) => {
       setSelectedDate2(event.target.value);
-      document.getElementById("mtdate2error").style.display = 'none';
-      document.getElementById("mtdate2").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleDateChange3 = (event) => {
       setSelectedDate3(event.target.value);
-      document.getElementById("mtdate3error").style.display = 'none';
-      document.getElementById("mtdate3").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const handleDateChange4 = (event) => {
       setSelectedDate4(event.target.value);
-      document.getElementById("mtdate4error").style.display = 'none';
-      document.getElementById("mtdate4").style.borderColor = 'rgba(0,0,0,.16)';
     };
 
     const selectferry = () =>{
-      
+      console.log(tripcount);
       if (triptype === 'One Way Trip'){
         if( owfrom !== '' && owto !== '' && owDate !== null) {
           document.getElementById("selectonewayferry").style.display = 'block';
@@ -922,7 +917,7 @@ export const Ferry = () => {
       document.getElementById('trip3').style.display = 'block';
       document.getElementById('addbutton').style.display = 'none';
       setTripcount(tripcount + 1);
-      
+      console.log(tripcount);
     }
 
     const addfield1 = () =>{
@@ -943,7 +938,7 @@ export const Ferry = () => {
       document.getElementById('trip3').style.display = 'none';
       document.getElementById('addbutton').style.display = 'block';
       setTripcount(tripcount - 1);
-      
+      console.log(tripcount);
     }
 
     const removefield2 = () =>{
@@ -951,7 +946,7 @@ export const Ferry = () => {
       document.getElementById('addbutton1').style.display = 'block';
       document.getElementById('removebutton1').style.display = 'block';
       setTripcount(tripcount - 1);
-      
+      console.log(tripcount);
     }
 
     const removefield3 = () =>{
@@ -959,403 +954,184 @@ export const Ferry = () => {
       document.getElementById('addbutton2').style.display = 'block';
       document.getElementById('removebutton2').style.display = 'block';
       setTripcount(tripcount - 1);
-      
+      console.log(tripcount);
     }
 
-    const allfilter = () =>{
-      if(triptype === "One Way Trip"){
-        document.getElementById("nautika_lite").style.display = "block";
-        document.getElementById("green_ocean").style.display = "block";
-      }
-      else if(triptype === "Round Trip"){
-        document.getElementById("nautika_litert1").style.display = "block";
-        document.getElementById("green_oceanrt1").style.display = "block";
-        document.getElementById("nautika_litert2").style.display = "block";
-        document.getElementById("green_oceanrt2").style.display = "block";
-      }
-      else if(triptype === "Multiple Trip"){
-        if(tripcount === 2){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "block";
-        }
-        else if(tripcount === 3){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "block";
-          document.getElementById("nautika_litemt3").style.display = "block";
-          document.getElementById("green_oceanmt3").style.display = "block";
-        }
-        else if(tripcount === 4){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "block";
-          document.getElementById("nautika_litemt3").style.display = "block";
-          document.getElementById("green_oceanmt3").style.display = "block";
-          document.getElementById("nautika_litemt4").style.display = "block";
-          document.getElementById("green_oceanmt4").style.display = "block";
-        }
-        else if(tripcount === 5){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "block";
-          document.getElementById("nautika_litemt3").style.display = "block";
-          document.getElementById("green_oceanmt3").style.display = "block";
-          document.getElementById("nautika_litemt4").style.display = "block";
-          document.getElementById("green_oceanmt4").style.display = "block";
-          document.getElementById("nautika_litemt5").style.display = "block";
-          document.getElementById("green_oceanmt5").style.display = "block";
-        }
-      }
-    }
-
-    const nautikalitefilter = () =>{
-      if(triptype === "One Way Trip"){
-        document.getElementById("nautika_lite").style.display = "block";
-        document.getElementById("green_ocean").style.display = "none";
-      }
-      else if(triptype === "Round Trip"){
-        document.getElementById("nautika_litert1").style.display = "block";
-        document.getElementById("green_oceanrt1").style.display = "none";
-        document.getElementById("nautika_litert2").style.display = "block";
-        document.getElementById("green_oceanrt2").style.display = "none";
-      }
-      else if(triptype === "Multiple Trip"){
-        if(tripcount === 2){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "none";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "none";
-        }
-        else if(tripcount === 3){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "none";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "none";
-          document.getElementById("nautika_litemt3").style.display = "block";
-          document.getElementById("green_oceanmt3").style.display = "none";
-        }
-        else if(tripcount === 4){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "none";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "none";
-          document.getElementById("nautika_litemt3").style.display = "block";
-          document.getElementById("green_oceanmt3").style.display = "none";
-          document.getElementById("nautika_litemt4").style.display = "block";
-          document.getElementById("green_oceanmt4").style.display = "none";
-        }
-        else if(tripcount === 5){
-          document.getElementById("nautika_litemt1").style.display = "block";
-          document.getElementById("green_oceanmt1").style.display = "none";
-          document.getElementById("nautika_litemt2").style.display = "block";
-          document.getElementById("green_oceanmt2").style.display = "none";
-          document.getElementById("nautika_litemt3").style.display = "block";
-          document.getElementById("green_oceanmt3").style.display = "none";
-          document.getElementById("nautika_litemt4").style.display = "block";
-          document.getElementById("green_oceanmt4").style.display = "none";
-          document.getElementById("nautika_litemt5").style.display = "block";
-          document.getElementById("green_oceanmt5").style.display = "none";
-        }
-      }
-    }
-
-    const greenoceanfilter = () =>{
-      if(triptype === "One Way Trip"){
-        document.getElementById("nautika_lite").style.display = "none";
-        document.getElementById("green_ocean").style.display = "block";
-      }
-      else if(triptype === "Round Trip"){
-        document.getElementById("nautika_litert1").style.display = "none";
-        document.getElementById("green_oceanrt1").style.display = "block";
-        document.getElementById("nautika_litert2").style.display = "none";
-        document.getElementById("green_oceanrt2").style.display = "block";
-      }
-      else if(triptype === "Multiple Trip"){
-        if(tripcount === 2){
-          document.getElementById("nautika_litemt1").style.display = "none";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "none";
-          document.getElementById("green_oceanmt2").style.display = "block";
-        }
-        else if(tripcount === 3){
-          document.getElementById("nautika_litemt1").style.display = "none";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "none";
-          document.getElementById("green_oceanmt2").style.display = "block";
-          document.getElementById("nautika_litemt3").style.display = "none";
-          document.getElementById("green_oceanmt3").style.display = "block";
-        }
-        else if(tripcount === 4){
-          document.getElementById("nautika_litemt1").style.display = "none";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "none";
-          document.getElementById("green_oceanmt2").style.display = "block";
-          document.getElementById("nautika_litemt3").style.display = "none";
-          document.getElementById("green_oceanmt3").style.display = "block";
-          document.getElementById("nautika_litemt4").style.display = "none";
-          document.getElementById("green_oceanmt4").style.display = "block";
-        }
-        else if(tripcount === 5){
-          document.getElementById("nautika_litemt1").style.display = "none";
-          document.getElementById("green_oceanmt1").style.display = "block";
-          document.getElementById("nautika_litemt2").style.display = "none";
-          document.getElementById("green_oceanmt2").style.display = "block";
-          document.getElementById("nautika_litemt3").style.display = "none";
-          document.getElementById("green_oceanmt3").style.display = "block";
-          document.getElementById("nautika_litemt4").style.display = "none";
-          document.getElementById("green_oceanmt4").style.display = "block";
-          document.getElementById("nautika_litemt5").style.display = "none";
-          document.getElementById("green_oceanmt5").style.display = "block";
-        }
-      }
-    }
-
-    const [ferryname, setFerryname] = useState('');
-    const [departuretime, setDeparturetime] = useState('');
-    const [arrivaltime, setArrivaltime] = useState('');
-    const [adultprice, setAdultprice] = useState('');
-    const [childprice, setChildprice] = useState('');
-    const [selectedamenitie, setSelectedamenitie] = useState('');
+  let renderOWContent;
+  if (owfrom === 'PortBlair' && owto === 'Havelock') {
+    renderOWContent = <div><PbtoHvl /></div>;
+  } else if(owfrom === 'PortBlair' && owto === 'Neil Island (Shaheed Dweep)') {
+    renderOWContent = <div><PbtoNI /></div>;
+  } else if(owfrom === 'Havelock' && owto === 'Neil Island (Shaheed Dweep)') {
+    renderOWContent = <div><HvltoNI /></div>;
+  } else if(owfrom === 'Havelock' && owto === 'PortBlair') {
+    renderOWContent = <div><HvltoPb /></div>;
+  } else if(owfrom === 'Neil Island (Shaheed Dweep)' && owto === 'PortBlair') {
+    renderOWContent = <div><NItoPb /></div>;
+  } else if(owfrom === 'Neil Island (Shaheed Dweep)' && owto === 'Havelock'){
+    renderOWContent = <div><NItoHvl /></div>;
+  }
   
-    // Function to update the state values
-    const updateStateValues = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerryname(ferryName);
-      setDeparturetime(departureTime);
-      setArrivaltime(arrivalTime);
-      setAdultprice(adultprice);
-      setChildprice(childprice);
-      setSelectedamenitie(selectedamenitie);
-     
-    };
+  let renderrtContent;
+  if (rtfrom === 'PortBlair' && rtto === 'Havelock') {
+    renderrtContent = <HvltoPb />;
+  } else if(rtfrom === 'PortBlair' && rtto === 'Neil Island (Shaheed Dweep)') {
+    renderrtContent = <NItoPb />;
+  } else if(rtfrom === 'Havelock' && rtto === 'Neil Island (Shaheed Dweep)') {
+    renderrtContent = <NItoHvl />;
+  } else if(rtfrom === 'Havelock' && rtto === 'PortBlair') {
+    renderrtContent = <PbtoHvl />;
+  } else if(rtfrom === 'Neil Island (Shaheed Dweep)' && rtto === 'PortBlair') {
+    renderrtContent = <PbtoNI />;
+  } else if(rtfrom === 'Neil Island (Shaheed Dweep)' && rtto === 'Havelock'){
+    renderrtContent = <HvltoNI />;
+  }
 
-    const [ferrynamert2, setFerrynamert2] = useState('');
-    const [departuretimert2, setDeparturetimert2] = useState('');
-    const [arrivaltimert2, setArrivaltimert2] = useState('');
-    const [adultpricert2, setAdultpricert2] = useState('');
-    const [childpricert2, setChildpricert2] = useState('');
-    const [selectedamenitiert2, setSelectedamenitiert2] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesrt2 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamert2(ferryName);
-      setDeparturetimert2(departureTime);
-      setArrivaltimert2(arrivalTime);
-      setAdultpricert2(adultprice);
-      setChildpricert2(childprice);
-      setSelectedamenitiert2(selectedamenitie);
-     
-    };
+  let renderrtContent1;
+  if ((rtfrom === 'PortBlair' && rtto === 'Havelock') || (from === 'PortBlair' && to === 'Havelock')) {
+    renderrtContent1 = <PbtoHvlrt2 />;
+  } else if((rtfrom === 'PortBlair' && rtto === 'Neil Island (Shaheed Dweep)') || (from === 'PortBlair' && to === 'Neil Island (Shaheed Dweep)')) {
+    renderrtContent1 = <PbtoNIrt2 />;
+  } else if((rtfrom === 'Havelock' && rtto === 'Neil Island (Shaheed Dweep)') || (from === 'Havelock' && to === 'Neil Island (Shaheed Dweep)')) {
+    renderrtContent1 = <HvltoNIrt2 />;
+  } else if((rtfrom === 'Havelock' && rtto === 'PortBlair') || (from === 'Havelock' && to === 'PortBlair')) {
+    renderrtContent1 = <HvltoPbrt2 />;
+  } else if((rtfrom === 'Neil Island (Shaheed Dweep)' && rtto === 'PortBlair') || (from === 'Neil Island (Shaheed Dweep)' && to === 'PortBlair')) {
+    renderrtContent1 = <NItoPbrt2 />;
+  } else if((rtfrom === 'Neil Island (Shaheed Dweep)' && rtto === 'Havelock') || (from === 'Neil Island (Shaheed Dweep)' && to === 'Havelock')){
+    renderrtContent1 = <NItoHvlrt2 />;
+  }
 
-    const [ferrynamert1, setFerrynamert1] = useState('');
-    const [departuretimert1, setDeparturetimert1] = useState('');
-    const [arrivaltimert1, setArrivaltimert1] = useState('');
-    const [adultpricert1, setAdultpricert1] = useState('');
-    const [childpricert1, setChildpricert1] = useState('');
-    const [selectedamenitiert1, setSelectedamenitiert1] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesrt1 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamert1(ferryName);
-      setDeparturetimert1(departureTime);
-      setArrivaltimert1(arrivalTime);
-      setAdultpricert1(adultprice);
-      setChildpricert1(childprice);
-      setSelectedamenitiert1(selectedamenitie);
-     
-    };
+  let rendermtContent1;
+  if ((from === 'PortBlair' && to === 'Havelock')) {
+    rendermtContent1 = <PbtoHvlmt1 />;
+  } else if((from === 'PortBlair' && to === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent1 = <PbtoNImt1 />;
+  } else if((from === 'Havelock' && to === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent1 = <HvltoNImt1 />;
+  } else if((from === 'Havelock' && to === 'PortBlair')) {
+    rendermtContent1 = <HvltoPbmt1 />;
+  } else if((from === 'Neil Island (Shaheed Dweep)' && to === 'PortBlair')) {
+    rendermtContent1 = <NItoPbmt1 />;
+  } else if((from === 'Neil Island (Shaheed Dweep)' && to === 'Havelock')){
+    rendermtContent1 = <NItoHvlmt1 />;
+  }
 
-    const [ferrynamemt1, setFerrynamemt1] = useState('');
-    const [departuretimemt1, setDeparturetimemt1] = useState('');
-    const [arrivaltimemt1, setArrivaltimemt1] = useState('');
-    const [adultpricemt1, setAdultpricemt1] = useState('');
-    const [childpricemt1, setChildpricemt1] = useState('');
-    const [selectedamenitiemt1, setSelectedamenitiemt1] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesmt1 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamemt1(ferryName);
-      setDeparturetimemt1(departureTime);
-      setArrivaltimemt1(arrivalTime);
-      setAdultpricemt1(adultprice);
-      setChildpricemt1(childprice);
-      setSelectedamenitiemt1(selectedamenitie);
-     
-    };
+  let rendermtContent2;
+  if ((to === 'PortBlair' && to1 === 'Havelock')) {
+    rendermtContent2 = <PbtoHvlmt2 tripcount = {tripcount}/>;
+  } else if((to === 'PortBlair' && to1 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent2 = <PbtoNImt2 tripcount = {tripcount}/>;
+  } else if((to === 'Havelock' && to1 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent2 = <HvltoNImt2 tripcount = {tripcount}/>;
+  } else if((to === 'Havelock' && to1 === 'PortBlair')) {
+    rendermtContent2 = <HvltoPbmt2 tripcount = {tripcount}/>;
+  } else if((to === 'Neil Island (Shaheed Dweep)' && to1 === 'PortBlair')) {
+    rendermtContent2 = <NItoPbmt2 tripcount = {tripcount}/>;
+  } else if((to === 'Neil Island (Shaheed Dweep)' && to1 === 'Havelock')){
+    rendermtContent2 = <NItoHvlmt2 tripcount = {tripcount}/>;
+  }
 
-    const [ferrynamemt2, setFerrynamemt2] = useState('');
-    const [departuretimemt2, setDeparturetimemt2] = useState('');
-    const [arrivaltimemt2, setArrivaltimemt2] = useState('');
-    const [adultpricemt2, setAdultpricemt2] = useState('');
-    const [childpricemt2, setChildpricemt2] = useState('');
-    const [selectedamenitiemt2, setSelectedamenitiemt2] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesmt2 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamemt2(ferryName);
-      setDeparturetimemt2(departureTime);
-      setArrivaltimemt2(arrivalTime);
-      setAdultpricemt2(adultprice);
-      setChildpricemt2(childprice);
-      setSelectedamenitiemt2(selectedamenitie);
-     
-    };
+  let rendermtContent3;
+  if ((to1 === 'PortBlair' && to2 === 'Havelock')) {
+    rendermtContent3 = <PbtoHvlmt3 tripcount = {tripcount}/>;
+  } else if((to1 === 'PortBlair' && to2 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent3 = <PbtoNImt3 tripcount = {tripcount}/>;
+  } else if((to1 === 'Havelock' && to2 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent3 = <HvltoNImt3 tripcount = {tripcount}/>;
+  } else if((to1 === 'Havelock' && to2 === 'PortBlair')) {
+    rendermtContent3 = <HvltoPbmt3 tripcount = {tripcount}/>;
+  } else if((to1 === 'Neil Island (Shaheed Dweep)' && to2 === 'PortBlair')) {
+    rendermtContent3 = <NItoPbmt3 tripcount = {tripcount}/>;
+  } else if((to1 === 'Neil Island (Shaheed Dweep)' && to2 === 'Havelock')){
+    rendermtContent3 = <NItoHvlmt3 tripcount = {tripcount}/>;
+  }
 
-    const [ferrynamemt3, setFerrynamemt3] = useState('');
-    const [departuretimemt3, setDeparturetimemt3] = useState('');
-    const [arrivaltimemt3, setArrivaltimemt3] = useState('');
-    const [adultpricemt3, setAdultpricemt3] = useState('');
-    const [childpricemt3, setChildpricemt3] = useState('');
-    const [selectedamenitiemt3, setSelectedamenitiemt3] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesmt3 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamemt3(ferryName);
-      setDeparturetimemt3(departureTime);
-      setArrivaltimemt3(arrivalTime);
-      setAdultpricemt3(adultprice);
-      setChildpricemt3(childprice);
-      setSelectedamenitiemt3(selectedamenitie);
-     
-    };
+  let rendermtContent4;
+  if ((to2 === 'PortBlair' && to3 === 'Havelock')) {
+    rendermtContent4 = <PbtoHvlmt4 tripcount = {tripcount}/>;
+  } else if((to2 === 'PortBlair' && to3 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent4 = <PbtoNImt4 tripcount = {tripcount}/>;
+  } else if((to2 === 'Havelock' && to3 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent4 = <HvltoNImt4 tripcount = {tripcount}/>;
+  } else if((to2 === 'Havelock' && to3 === 'PortBlair')) {
+    rendermtContent4 = <HvltoPbmt4 tripcount = {tripcount}/>;
+  } else if((to2 === 'Neil Island (Shaheed Dweep)' && to3 === 'PortBlair')) {
+    rendermtContent4 = <NItoPbmt4 tripcount = {tripcount}/>;
+  } else if((to2 === 'Neil Island (Shaheed Dweep)' && to3 === 'Havelock')){
+    rendermtContent4 = <NItoHvlmt4 tripcount = {tripcount}/>;
+  }
 
-    const [ferrynamemt4, setFerrynamemt4] = useState('');
-    const [departuretimemt4, setDeparturetimemt4] = useState('');
-    const [arrivaltimemt4, setArrivaltimemt4] = useState('');
-    const [adultpricemt4, setAdultpricemt4] = useState('');
-    const [childpricemt4, setChildpricemt4] = useState('');
-    const [selectedamenitiemt4, setSelectedamenitiemt4] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesmt4 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamemt4(ferryName);
-      setDeparturetimemt4(departureTime);
-      setArrivaltimemt4(arrivalTime);
-      setAdultpricemt4(adultprice);
-      setChildpricemt4(childprice);
-      setSelectedamenitiemt4(selectedamenitie);
-     
-    };
-
-    const [ferrynamemt5, setFerrynamemt5] = useState('');
-    const [departuretimemt5, setDeparturetimemt5] = useState('');
-    const [arrivaltimemt5, setArrivaltimemt5] = useState('');
-    const [adultpricemt5, setAdultpricemt5] = useState('');
-    const [childpricemt5, setChildpricemt5] = useState('');
-    const [selectedamenitiemt5, setSelectedamenitiemt5] = useState('');
-  
-    // Function to update the state values
-    const updateStateValuesmt5 = (ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie) => {
-      setFerrynamemt5(ferryName);
-      setDeparturetimemt5(departureTime);
-      setArrivaltimemt5(arrivalTime);
-      setAdultpricemt5(adultprice);
-      setChildpricemt5(childprice);
-      setSelectedamenitiemt5(selectedamenitie);
-     
-    };
+  let rendermtContent5;
+  if ((to3 === 'PortBlair' && to4 === 'Havelock')) {
+    rendermtContent5 = <PbtoHvlmt5 tripcount = {tripcount}/>;
+  } else if((to3 === 'PortBlair' && to4 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent5 = <PbtoNImt5 tripcount = {tripcount}/>;
+  } else if((to3 === 'Havelock' && to4 === 'Neil Island (Shaheed Dweep)')) {
+    rendermtContent5 = <HvltoNImt5 tripcount = {tripcount}/>;
+  } else if((to3 === 'Havelock' && to4 === 'PortBlair')) {
+    rendermtContent5 = <HvltoPbmt5 tripcount = {tripcount}/>;
+  } else if((to3 === 'Neil Island (Shaheed Dweep)' && to4 === 'PortBlair')) {
+    rendermtContent5 = <NItoPbmt5 tripcount = {tripcount}/>;
+  } else if((to3 === 'Neil Island (Shaheed Dweep)' && to4 === 'Havelock')){
+    rendermtContent5 = <NItoHvlmt5 tripcount = {tripcount}/>;
+  }
 
   let render;
   if(tripcount === 2){
     render = <>
-                <div className='col-2'>
-                </div>
-                <div className='col-4' id='multitrip1' style={{backgroundColor:"white", height:"150px", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-6' id='multitrip1' style={{backgroundColor:"white", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{from} &rarr; {to}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate}</label>
                 </div>
-                <div className='col-4' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-6' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to} &rarr; {to1}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate1}</label>
-                </div>
-                <div className='col-2'>
                 </div>
              </>
   }
   else if(tripcount === 3){
     render = <>
-                <div className='col-1'></div>
-                <div className='col-3' id='multitrip1' style={{backgroundColor:"white", height:"150px", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-4' id='multitrip1' style={{backgroundColor:"white", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{from} &rarr; {to}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate}</label>
                 </div>
-                <div className='col-3' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-4' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to} &rarr; {to1}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate1}</label>
                 </div>
-                <div className='col-3' id='multitrip3' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-4' id='multitrip3' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to1} &rarr; {to2}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate2}</label>
-                </div>
-                <div className='col-1'></div>
-             </>
-  } 
-  else if(tripcount === 4){
-    render = <>
-                <div className='col-2'>
-                </div>
-                <div className='col-2' id='multitrip1' style={{backgroundColor:"white", height:"150px", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
-                  <span className='rtfromto'>{from} &rarr; {to}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate}</label>
-                </div>
-                <div className='col-2' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
-                  <span className='rtfromto'>{to} &rarr; {to1}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate1}</label>
-                </div>
-                <div className='col-2' id='multitrip3' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
-                  <span className='rtfromto'>{to1} &rarr; {to2}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate2}</label>
-                </div>
-                <div className='col-2' id='multitrip4' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
-                  <span className='rtfromto'>{to2} &rarr; {to3}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate3}</label>
-                </div>
-                <div className='col-2'>
                 </div>
              </>
-  } 
-  else if(tripcount === 5){
+  } else if(tripcount === 4){
     render = <>
-                <div className='col-1'></div>
-                <div className='col-2' id='multitrip1' style={{backgroundColor:"white", height:"150px", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-3' id='multitrip1' style={{backgroundColor:"white", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{from} &rarr; {to}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate}</label>
                 </div>
-                <div className='col-2' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-3' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to} &rarr; {to1}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate1}</label>
                 </div>
-                <div className='col-2' id='multitrip3' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-3' id='multitrip3' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to1} &rarr; {to2}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate2}</label>
                 </div>
-                <div className='col-2' id='multitrip4' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+                <div className='col-3' id='multitrip4' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to2} &rarr; {to3}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate3}</label>
                 </div>
-                <div className='col-2' id='multitrip5' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", marginLeft:"1%", borderRadius:"15px", textAlign:"center", paddingTop:"2%"}}>
+             </>
+  } else if(tripcount === 5){
+    render = <>
+                <div className='col' id='multitrip1' style={{backgroundColor:"white", height:"85px", textAlign:"center", paddingTop:"2%"}}>
+                  <span className='rtfromto'>{from} &rarr; {to}</span>
+                </div>
+                <div className='col' id='multitrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
+                  <span className='rtfromto'>{to} &rarr; {to1}</span>
+                </div>
+                <div className='col' id='multitrip3' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
+                  <span className='rtfromto'>{to1} &rarr; {to2}</span>
+                </div>
+                <div className='col' id='multitrip4' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
+                  <span className='rtfromto'>{to2} &rarr; {to3}</span>
+                </div>
+                <div className='col' id='multitrip5' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"85px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{to3} &rarr; {to4}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {selectedDate4}</label>
                 </div>
-                <div className='col-1'></div>
              </>
   }
   
@@ -1402,7 +1178,7 @@ export const Ferry = () => {
                                   <select className="form-control col-md-12" id='owfrom' value={owfrom} onChange={onewayOptionChangefrom} required>
                                       <option>Select</option>
                                       <option className="font-medium font-size-small gray mar-b-1 mob-top" value="PortBlair">Port Blair</option>
-                                      <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Havelock (Swaraj Dweep)">Havelock (Swaraj Dweep)</option>
+                                      <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Havelock">Havelock</option>
                                       <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Neil Island (Shaheed Dweep)">Neil Island (Shaheed Dweep)</option>
                                   </select>
                                   <span className="dropdown-icon">
@@ -1447,7 +1223,7 @@ export const Ferry = () => {
                                   <select className="form-control col-md-12" id='rtfrom' value={rtfrom} onChange={roundtripOptionChangefrom} required>
                                       <option>Select</option>
                                       <option className="font-medium font-size-small gray mar-b-1 mob-top" value="PortBlair">Port Blair</option>
-                                      <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Havelock (Swaraj Dweep)">Havelock (Swaraj Dweep)</option>
+                                      <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Havelock">Havelock</option>
                                       <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Neil Island (Shaheed Dweep)">Neil Island (Shaheed Dweep)</option>
                                   </select>
                                   <span className="dropdown-icon">
@@ -1501,7 +1277,7 @@ export const Ferry = () => {
                                   <select className="form-control col-md-12" onChange={handleOptionChange} id='mtfrom'>
                                       <option>Select</option>
                                       <option className="font-medium font-size-small gray mar-b-1 mob-top" value="PortBlair">Port Blair</option>
-                                      <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Havelock (Swaraj Dweep)">Havelock (Swaraj Dweep)</option>
+                                      <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Havelock">Havelock</option>
                                       <option className="font-medium font-size-small gray mar-b-1 mob-top" value="Neil Island (Shaheed Dweep)">Neil Island (Shaheed Dweep)</option>
                                   </select>
                                   <span className="dropdown-icon">
@@ -1754,13 +1530,13 @@ export const Ferry = () => {
                       <span className="font-regular font-size-smallest gray-light mob-text">* Age as of the date of journey.</span>
                     </div>
                 </div>
-            </div>
-            <div className="ferry-search text-center">
-              <button type="button" className='btn btn-success' onClick={selectferry} style={{fontSize:"24px",paddingBottom:"40px", height:"40px", marginBottom:"32px"}}>SEARCH</button>
+                <div className="ferry-search text-center pt-4">
+                  <button type="button" className='btn btn-success' onClick={selectferry} style={{fontSize:"24px",paddingBottom:"40px", height:"40px"}}>SEARCH</button>
+                </div>
             </div>
         </div>
 
-        <div className="sticky-top-form gray-white-bg1" id="selectonewayferry" style={{ display:"none"}}>
+        <div className="sticky-top-form gray-white-bg" id="selectonewayferry" style={{ display:"none"}}>
             <br></br>
             <div className='container rt'>
               <div className='row'>
@@ -1769,305 +1545,77 @@ export const Ferry = () => {
                 </div>
                 <div className='col-4' style={{backgroundColor:"white", height:"150px", textAlign:"center", paddingTop:"2%", borderRadius:"15px"}}>
                   <span className='rtfromto'>{owfrom} &rarr; {owto}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {owDate}</label>
+                  <label style={{marginTop:"5%", color:"#0000008e"}}>{owDate}</label>
                 </div>
                 <div className='col-4'>
                   
                 </div>
               </div>
             </div>
-            <div className='container-fluid rt'>
+            <div className='container rt'>
               <div className='row'>
-                <div className='col-3'>
-                  <div className="container">
-                    <div className='row'>
-                      <div className='container' style={{ backgroundColor:"rgb(254, 187, 2)"}}>
-                          <div className='row'>
-                              <div className='col'>
-                                  <h4 style={{textAlign:"center", marginTop:"10%"}}>No. Of Passengers</h4>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"4%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Adult: {count}</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"4%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Child: {count1}</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"10%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Infant: {count2}</span>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div className='row my-5'>
-                      <div className='container' style={{ backgroundColor:"white"}}>
-                          <div className='row'>
-                              <div className='col'>
-                                  <h4 style={{textAlign:"center", marginTop:"10%",backgroundColor:"#e6f7ff",padding:"10px"}}>Ferry Operater Filter</h4>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%", marginTop:"4%"}}>
-                                <input type="radio" name='filter' onChange={allfilter}/>&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>All Ferry</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' onChange={nautikalitefilter}/>&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Nautika Lite</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' onChange={greenoceanfilter} />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Green Ocean</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Nautika</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%", marginBottom:"10%"}}>
-                                <input type="radio" name='filter' />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Green Ocean 1</span>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-9'>
-                  <div><Oneway updateStateValues={updateStateValues} /></div>
+                <div className='col selectferry1'>
+                  {renderOWContent}
                 </div>
               </div>
             </div>
         </div>
 
-        <div className="sticky-top-form gray-white-bg1" id="selectroundtripferry" style={{ display:"none"}}>
+        <div className="sticky-top-form gray-white-bg" id="selectroundtripferry" style={{ display:"none"}}>
           <br></br>
             <div className='container rt'>
               <div className='row'>
-                <div className='col-2'>
-                  
-                </div>
-                <div className='col-4' id='roundtrip1' style={{backgroundColor:"white", height:"150px", textAlign:"center", paddingTop:"2%", borderRadius:"15px"}}>
+                <div className='col-6' id='roundtrip1' style={{backgroundColor:"white", height:"80px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{rtfrom} &rarr; {rtto}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {rt1Date}</label>
                 </div>
-                <div className='col-4' id='roundtrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"150px", textAlign:"center", paddingTop:"2%", borderRadius:"15px", marginLeft:"2%"}}>
+                <div className='col-6' id='roundtrip2' style={{backgroundColor:"hsl(0, 1%, 80%)", height:"80px", textAlign:"center", paddingTop:"2%"}}>
                   <span className='rtfromto'>{rtto} &rarr; {rtfrom}</span>
-                  <br></br>
-                  <label style={{marginTop:"10%", color:"#0000008e"}}>Date: {rt2Date}</label>
-                </div>
-                <div className='col-2'>
-                  
                 </div>
               </div>
-            </div>
-            <div className='container-fluid rt'>
-              <div className='row'>
-                <div className='col-3'>
-                  <div className="container">
-                    <div className='row'>
-                      <div className='container' style={{ backgroundColor:"rgb(254, 187, 2)"}}>
-                          <div className='row'>
-                              <div className='col'>
-                                  <h4 style={{textAlign:"center", marginTop:"10%"}}>No. Of Passengers</h4>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"4%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Adult: {count}</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"4%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Child: {count1}</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"10%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Infant: {count2}</span>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div className='row my-5'>
-                      <div className='container' style={{ backgroundColor:"white"}}>
-                          <div className='row'>
-                              <div className='col'>
-                                  <h4 style={{textAlign:"center", marginTop:"10%",backgroundColor:"#e6f7ff",padding:"10px"}}>Ferry Operater Filter</h4>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%", marginTop:"4%"}}>
-                                <input type="radio" name='filter' onChange={allfilter}/>&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>All Ferry</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' onChange={nautikalitefilter}/>&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Nautika Lite</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' onChange={greenoceanfilter} />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Green Ocean</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Nautika</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%", marginBottom:"10%"}}>
-                                <input type="radio" name='filter' />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Green Ocean 1</span>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-9'>
-                  <div className='container'>
-                    <div className='row' id='rt1'>
-                      <div className='col'>
-                        <Roundtrip1 updateStateValuesrt1={updateStateValuesrt1}/>
-                      </div>                
-                    </div>
-                    <div className='row' id='rt2' style={{display:"none"}}>
-                      <div className='col'>
-                        this is trip 2
-                        <Roundtrip2 updateStateValuesrt2={updateStateValuesrt2}/>
-                      </div>                
-                    </div>
-                  </div>
-                </div>
+              <div className='row' id='rt1'>
+                <div className='col selectferry1'>
+                  {renderrtContent1}
+                </div>                
+              </div>
+              <div className='row' id='rt2' style={{display:"none"}}>
+                <div className='col selectferry1'>
+                  this is trip 2
+                  {renderrtContent}
+                </div>                
               </div>
             </div>
         </div> 
 
-        <div className="sticky-top-form gray-white-bg1" id="selectmultitripferry" style={{ display:"none"}}>
+        <div className="sticky-top-form gray-white-bg" id="selectmultitripferry" style={{ display:"none"}}>
           <br></br>
             <div className='container rt'>
               <div className='row'>
                 {render}
               </div>
-            </div>
-            <div className='container-fluid rt'>
-              <div className='row'>
-                <div className='col-3'>
-                  <div className="container">
-                    <div className='row'>
-                      <div className='container' style={{ backgroundColor:"rgb(254, 187, 2)"}}>
-                          <div className='row'>
-                              <div className='col'>
-                                  <h4 style={{textAlign:"center", marginTop:"10%"}}>No. Of Passengers</h4>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"4%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Adult: {count}</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"4%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Child: {count1}</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"50px", marginLeft:"6%", marginRight:"6%", marginTop:"4%", marginBottom:"10%", textAlign:"center"}}>
-                                  <span style={{fontSize:"24px"}}>Infant: {count2}</span>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div className='row my-5'>
-                      <div className='container' style={{ backgroundColor:"white"}}>
-                          <div className='row'>
-                              <div className='col'>
-                                  <h4 style={{textAlign:"center", marginTop:"10%",backgroundColor:"#e6f7ff",padding:"10px"}}>Ferry Operater Filter</h4>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%", marginTop:"4%"}}>
-                                <input type="radio" name='filter' onChange={allfilter}/>&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>All Ferry</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' onChange={nautikalitefilter}/>&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Nautika Lite</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' onChange={greenoceanfilter} />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Green Ocean</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%"}}>
-                                <input type="radio" name='filter' />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Nautika</span>
-                              </div>
-                          </div>
-                          <div className='row'>
-                              <div className='col' style={{backgroundColor:"white", height:"35px", marginLeft:"6%", marginRight:"6%", marginBottom:"10%"}}>
-                                <input type="radio" name='filter' />&nbsp;&nbsp;
-                                  <span style={{fontSize:"18px"}}>Green Ocean 1</span>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-9'>
-                  <div className='container'>
-                    <div className='row' id='mt1'>
-                      <div className='col'>
-                        <Multipletrip1 updateStateValuesmt1={updateStateValuesmt1}/>
-                      </div>                
-                    </div>
-                    <div className='row' id='mt2' style={{display:"none"}}>
-                      <div className='col'>
-                        <Multipletrip2 tripcount = {tripcount} updateStateValuesmt2={updateStateValuesmt2}/>
-                      </div>                
-                    </div>
-                    <div className='row' id='mt3' style={{display:"none"}}>
-                      <div className='col'>
-                        <Multipletrip3 tripcount = {tripcount} updateStateValuesmt3={updateStateValuesmt3}/>
-                      </div>                
-                    </div>
-                    <div className='row' id='mt4' style={{display:"none"}}>
-                      <div className='col'>
-                        <Multipletrip4 tripcount = {tripcount} updateStateValuesmt4={updateStateValuesmt4}/>
-                      </div>                
-                    </div>
-                    <div className='row' id='mt5' style={{display:"none"}}>
-                      <div className='col'>
-                        <Multipletrip5 updateStateValuesmt5={updateStateValuesmt5}/>
-                      </div>                
-                    </div>
-                  </div>
-                </div>
+              <div className='row' id='mt1'>
+                <div className='col selectferry1'>
+                  {rendermtContent1}
+                </div>                
+              </div>
+              <div className='row' id='mt2' style={{display:"none"}}>
+                <div className='col selectferry1'>
+                  {rendermtContent2}
+                </div>                
+              </div>
+              <div className='row' id='mt3' style={{display:"none"}}>
+                <div className='col selectferry1'>
+                  {rendermtContent3}
+                </div>                
+              </div>
+              <div className='row' id='mt4' style={{display:"none"}}>
+                <div className='col selectferry1'>
+                  {rendermtContent4}
+                </div>                
+              </div>
+              <div className='row' id='mt5' style={{display:"none"}}>
+                <div className='col selectferry1'>
+                  {rendermtContent5}
+                </div>                
               </div>
             </div>
         </div>
@@ -2076,19 +1624,11 @@ export const Ferry = () => {
           <Travellersdetail  adults={count} child={count1} infant={count2} owfrom={owfrom} owto={owto} rtfrom={rtfrom} rtto={rtto}
             from={from} to={to} to1={to1} to2={to2} to3={to3} to4={to4} tripcount={tripcount} triptype={triptype} owDate={owDate}
             rt1Date={rt1Date} rt2Date={rt2Date} selectedDate={selectedDate} selectedDate1={selectedDate1} selectedDate2={selectedDate2} 
-            selectedDate3={selectedDate3} selectedDate4={selectedDate4} ferryName={ferryname} departureTime={departuretime} arrivalTime={arrivaltime}
-            adultprice={adultprice} childprice={childprice} selectedamenitie={selectedamenitie} ferryNamert2={ferrynamert2} departureTimert2={departuretimert2} 
-            arrivalTimert2={arrivaltimert2} adultpricert2={adultpricert2} childpricert2={childpricert2} selectedamenitiert2={selectedamenitiert2}
-            ferryNamert1={ferrynamert1} departureTimert1={departuretimert1} arrivalTimert1={arrivaltimert1} adultpricert1={adultpricert1} childpricert1={childpricert1} selectedamenitiert1={selectedamenitiert1}
-            ferryNamemt1={ferrynamemt1} departureTimemt1={departuretimemt1} arrivalTimemt1={arrivaltimemt1} adultpricemt1={adultpricemt1} childpricemt1={childpricemt1} selectedamenitiemt1={selectedamenitiemt1}
-            ferryNamemt2={ferrynamemt2} departureTimemt2={departuretimemt2} arrivalTimemt2={arrivaltimemt2} adultpricemt2={adultpricemt2} childpricemt2={childpricemt2} selectedamenitiemt2={selectedamenitiemt2}
-            ferryNamemt3={ferrynamemt3} departureTimemt3={departuretimemt3} arrivalTimemt3={arrivaltimemt3} adultpricemt3={adultpricemt3} childpricemt3={childpricemt3} selectedamenitiemt3={selectedamenitiemt3}
-            ferryNamemt4={ferrynamemt4} departureTimemt4={departuretimemt4} arrivalTimemt4={arrivaltimemt4} adultpricemt4={adultpricemt4} childpricemt4={childpricemt4} selectedamenitiemt4={selectedamenitiemt4}
-            ferryNamemt5={ferrynamemt5} departureTimemt5={departuretimemt5} arrivalTimemt5={arrivaltimemt5} adultpricemt5={adultpricemt5} childpricemt5={childpricemt5} selectedamenitiemt5={selectedamenitiemt5}
+            selectedDate3={selectedDate3} selectedDate4={selectedDate4}
           />
         </div>
     </>
   )
 }
 
-export default Ferry
+export default Ferry1

@@ -4,9 +4,16 @@
 }
   
 .gray-white-bg {
-  background-color: rgb(246, 246, 250);
+  background-color: #e6f7ff;
+  height: 145vb;
+  /* margin-top: -22px; */
+  /* max-height: fit-content; */
+}
+
+.gray-white-bg1 {
+  background-color: #e6f7ff;
   height: max-content;
-  margin-top: -22px;
+  /* margin-top: -22px; */
   /* max-height: fit-content; */
 }
 
@@ -108,7 +115,8 @@
 }
   
 .ferry-search {
-  margin-bottom: -37px;
+  /* margin-bottom: 10px; */
+  margin-top: 30px;
 }
 
 .btn {
@@ -142,11 +150,11 @@
 }
 
 .button-minus {
-  background-color: rgb(246, 246, 250);;
+  background-color: #e6f7ff;
 }
 
 .button-plus {
-  background-color: rgb(246, 246, 250);;
+  background-color: #e6f7ff;
 }
 
 .number {
@@ -159,19 +167,6 @@
   font-size: 18px;
   font-weight: bold;
   color: black;
-}
-
-.progress{
-  display: flex;
-  margin-left: 25%;
-  /* margin-top: 5%; */
-}
-
-.progress-bar{
-  width: 33.33%;
-  height: 20px;
-  /* background-color: rgb(134, 176, 240); */
-  /* color: aqua; */
 }
 
 .selectferry{
@@ -526,7 +521,8 @@ li {
   background-color: #01b46c;
   color: #fff;
   text-transform: capitalize;
-  margin-bottom: -46px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   opacity: 1;
   font-size: 20px;
   height: 46px;
@@ -535,7 +531,7 @@ li {
 }
 
 .rt{
-  width: 50% !important;
+  width: 100% !important;
   border-radius: 5px;
   margin-top: 2%;
 }

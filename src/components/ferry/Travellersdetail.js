@@ -2,104 +2,40 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
 import PaymentGatewayPage from './PaymentGatewayPage';
+// import { useState } from 'react';
 import './Ferry.css';
 
 const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, from, to, to1, to2, to3, to4, tripcount, triptype, owDate,
-                            rt1Date, rt2Date, selectedDate, selectedDate1, selectedDate2, selectedDate3, selectedDate4}) => {
-    const [formFields, setFormFields] = useState([]);
-    const [formFieldschild, setFormFieldschild] = useState([]);
-    const [formFieldsinfant, setFormFieldsinfant] = useState([]);
-    
-    // Adult DOB handler
-    const handleDateChange = (index, date) => {
-        const updatedFields = [...formFields];
-        updatedFields[index] = date;
-        setFormFields(updatedFields);
-    };
+                            rt1Date, rt2Date, selectedDate, selectedDate1, selectedDate2, selectedDate3, selectedDate4,
+                            ferryName, departureTime, arrivalTime, adultprice, childprice, selectedamenitie, 
+                            ferryNamert2, departureTimert2, arrivalTimert2, adultpricert2, childpricert2, selectedamenitiert2, 
+                            ferryNamert1, departureTimert1, arrivalTimert1, adultpricert1, childpricert1, selectedamenitiert1,
+                            ferryNamemt1, departureTimemt1, arrivalTimemt1, adultpricemt1, childpricemt1, selectedamenitiemt1,
+                            ferryNamemt2, departureTimemt2, arrivalTimemt2, adultpricemt2, childpricemt2, selectedamenitiemt2,
+                            ferryNamemt3, departureTimemt3, arrivalTimemt3, adultpricemt3, childpricemt3, selectedamenitiemt3,
+                            ferryNamemt4, departureTimemt4, arrivalTimemt4, adultpricemt4, childpricemt4, selectedamenitiemt4,
+                            ferryNamemt5, departureTimemt5, arrivalTimemt5, adultpricemt5, childpricemt5, selectedamenitiemt5}) => {
 
-    // Child DOB handler
-    const handleDateChangechild = (index, date) => {
-        const updatedFields = [...formFieldschild];
-        updatedFields[index] = date;
-        setFormFieldschild(updatedFields);
-    };
-
-    // Infant DOB handler
-    const handleDateChangeinfant = (index, date) => {
-        const updatedFields = [...formFieldsinfant];
-        updatedFields[index] = date;
-        setFormFieldsinfant(updatedFields);
-    };
-
-    // Adult age calculation
-    const calculateAge = (date) => {
-        const birthDate = new Date(date);
-        const today = new Date();
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff = today.getMonth() - birthDate.getMonth();  
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }   
-        return {age,monthDiff};
-    };
-    
-    // Child age calculation
-    const calculateAge1 = (date) => {
-        const birthDate = new Date(date);
-        const today = new Date();
-        let age1 = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff1 = today.getMonth() - birthDate.getMonth();
-
-        if (monthDiff1 < 0 || (monthDiff1 === 0 && today.getDate() < birthDate.getDate())) {
-          age1--;
-        }
-
-        return {age1,monthDiff1};
-    };
-
-    // Infant age calculation
-    const calculateAge2 = (date) => {
-        const birthDate = new Date(date);
-        const today = new Date();
-        let age2 = today.getFullYear() - birthDate.getFullYear();
-        var monthDiff2 = today.getMonth() - birthDate.getMonth();
-        if(monthDiff2 < 0){
-            age2--;
-            monthDiff2 = monthDiff2 + 12; 
-        }
-        if(monthDiff2 === 0 && today.getDate() < birthDate.getDate()){
-            age2--;
-            monthDiff2 = 11;
-        }
-        if(monthDiff2 === 0 && today.getDate() > birthDate.getDate()){
-            monthDiff2 = 0;
-        }
-        return {age2,monthDiff2};
-    };
-
-    const formatAge = (year) => {
-        const yearsLabel = year.age2 === 1 ? 'yr' : 'yrs';
-        const monthsLabel = year.monthDiff2 === 1 ? 'month' : 'months';
-      
-        return `${year.age2} ${yearsLabel} and ${year.monthDiff2} ${monthsLabel}`;
-    };
 
     const handleProceed = (e) => {
-        // setShowPaymentGateway(true);
         e.preventDefault();
         document.getElementById("hidetravellersdetails").style.display = 'none';
         document.getElementById("showpaymentpage").style.display = 'block';
     };
+
+    const totalfare = adults*adultprice + child*childprice ;
+    const totalfarert1 = adults*adultpricert1 + child*childpricert1 ;
+    const totalfarert2 = adults*adultpricert2 + child*childpricert2 ;
+    const totalfaremt1 = adults*adultpricemt1 + child*childpricemt1 ;
+    const totalfaremt2 = adults*adultpricemt2 + child*childpricemt2 ;
+    const totalfaremt3 = adults*adultpricemt3 + child*childpricemt3 ;
+    const totalfaremt4 = adults*adultpricemt4 + child*childpricemt4 ;
+    const totalfaremt5 = adults*adultpricemt5 + child*childpricemt5 ;
       
-    // Iterating Adults Fields according to the no. of adult selected on page 1
     const renderAdults = () => {
         const items = [];
         for (let i = 0; i < adults; i++) {
-            const dob = formFields[i];
-            const ageObj = calculateAge(dob);
-            const age = ageObj.age;
             const nationality = (e, nationalityId) => {
                 const nationality1 = e.target.value;
                 const nationalityRow = document.getElementById(`shownationality-${nationalityId}`);
@@ -115,54 +51,6 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                   expiryField.required = false;
                 }
             };
-            
-            if(triptype === 'One Way Trip'){
-                const owDateObj = new Date(owDate);
-        
-                owDateObj.setFullYear(owDateObj.getFullYear() - 12);
-        
-                var minDate = owDateObj.toISOString().split('T')[0];
-            }
-        
-            if(triptype === 'Round Trip'){
-                const rt2DateObj = new Date(rt2Date);
-
-                rt2DateObj.setFullYear(rt2DateObj.getFullYear() - 12);
-        
-                minDate = rt2DateObj.toISOString().split('T')[0];
-            }
-        
-            if(triptype === 'Multiple Trip'){
-                if(tripcount === 2){
-                    const selectedDate1Obj = new Date(selectedDate1);
-        
-                    selectedDate1Obj.setFullYear(selectedDate1Obj.getFullYear() - 12);
-            
-                    minDate = selectedDate1Obj.toISOString().split('T')[0];
-                }
-                if(tripcount === 3){
-                    const selectedDate2Obj = new Date(selectedDate2);
-        
-                    selectedDate2Obj.setFullYear(selectedDate2Obj.getFullYear() - 12);
-            
-                    minDate = selectedDate2Obj.toISOString().split('T')[0];
-                }
-                if(tripcount === 4){
-                    const selectedDate3Obj = new Date(selectedDate3);
-        
-                    selectedDate3Obj.setFullYear(selectedDate3Obj.getFullYear() - 12);
-            
-                    minDate = selectedDate3Obj.toISOString().split('T')[0];
-                }
-                if(tripcount === 5){
-                    const selectedDate4Obj = new Date(selectedDate4);
-        
-                    selectedDate4Obj.setFullYear(selectedDate4Obj.getFullYear() - 12);
-            
-                    minDate = selectedDate4Obj.toISOString().split('T')[0];
-                }
-            }
-              
             items.push(
                 <div key={i}>
                     <div className='row'>
@@ -172,7 +60,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     </div>
                     <div className='row gray'>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Title</label>
+                            <label style={{fontSize:"16px"}}>Title<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <div className="input-group input-from mb-3">
                                 <select className="form-control" required>
                                     <option className="font-medium font-size-small gray mar-b-1 mob-top" value="">Select</option>
@@ -187,12 +75,12 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label htmlFor="firstName" style={{fontSize:"16px"}}>First Name</label>
-                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='First Name' required/>
+                            <label htmlFor='firstName' style={{fontSize:"16px"}}>First Name<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
+                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='First Name' required />
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Last Name</label>
-                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='Last Name' required/>
+                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='Last Name'/>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Middle Name</label>
@@ -201,7 +89,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     </div>
                     <div className='row gray'>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Gender</label>
+                            <label style={{fontSize:"16px"}}>Gender<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <div className="input-group input-from mb-3">
                                 <select className="form-control" required>
                                     <option className="font-medium font-size-small gray mar-b-1 mob-top" value="">Select</option>
@@ -215,12 +103,8 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>DOB</label>
-                            <input type='date' className='form-control' style={{ height: '38px' }} max={minDate} value={dob || ''} onChange={(e) => handleDateChange(i, e.target.value)} required />
-                        </div>
-                        <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Age</label>
-                            <input type="text" className="form-control" style={{height:"38px"}} placeholder='Age' value={age} readOnly />
+                            <label style={{fontSize:"16px"}}>Age<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
+                            <input type="number" className="form-control" min="12" style={{height:"38px"}} placeholder='Age' required onInvalid={(e) => e.target.setCustomValidity('Adult age must be above or equal to 12')} onInput={(e) => e.target.setCustomValidity('')} />
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Nationality</label>
@@ -486,29 +370,25 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-lg-6 col-md-12 col-sm-12'>
                             <div className='row'>
                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                <label style={{ fontSize: "16px" }}>Passport No</label>
+                                <label style={{ fontSize: "16px" }}>Passport No<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                 <input type='text' className="form-control passport-input" style={{ height: "38px" }} placeholder='Passport No'/>
                             </div>
                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                <label style={{ fontSize: "16px" }}>Expiry Date</label>
+                                <label style={{ fontSize: "16px" }}>Expiry Date<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                 <input type='date' className='form-control expiry-input' min={minexpirydate} style={{ height: '38px' }}/>
                             </div>
                             </div>
                         </div>
                     </div>
                 </div>
-           );
+            );
         }            
         return items;
     };
 
-    // Iterating Child Fields according to the no. of child selected on page 1
     const renderChild = () => {
         const items = [];
         for (let i = 0; i < child; i++) {
-            const dob1 = formFieldschild[i];
-            const ageObjchild = calculateAge1(dob1);
-            const agechild = ageObjchild.age1;
             const nationality = (e, nationalityId) => {
                 const nationality1 = e.target.value;
                 const nationalityRow = document.getElementById(`showchildnationality-${nationalityId}`);
@@ -524,79 +404,6 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                   expiryField.required = false;
                 }
             };
-
-            if(triptype === 'One Way Trip'){
-                const owDatechild = new Date(owDate);
-                const owDatechild1 = new Date(owDate);
-
-                owDatechild.setFullYear(owDatechild.getFullYear() - 12);
-                owDatechild1.setFullYear(owDatechild1.getFullYear() - 2);
-                // owDateinfant.setFullYear(owDateinfant.getFullYear() - 2);
-                owDatechild.setDate(owDatechild.getDate() + 1);
-
-                var minchildDate = owDatechild.toISOString().split('T')[0];
-                var maxchildDate = owDatechild1.toISOString().split('T')[0];
-            }
-        
-            if(triptype === 'Round Trip'){
-                const rt2Datechild = new Date(rt2Date);
-                const rt2Datechild1 = new Date(rt2Date);
-        
-                rt2Datechild.setFullYear(rt2Datechild.getFullYear() - 12);
-                rt2Datechild1.setFullYear(rt2Datechild1.getFullYear() - 2);
-                rt2Datechild.setDate(rt2Datechild.getDate() + 1);
-        
-                minchildDate = rt2Datechild.toISOString().split('T')[0];
-                maxchildDate = rt2Datechild1.toISOString().split('T')[0];
-            }
-        
-            if(triptype === 'Multiple Trip'){
-                if(tripcount === 2){
-                    const selectedDate1child = new Date(selectedDate1);
-                    const selectedDate1child1 = new Date(selectedDate1);
-            
-                    selectedDate1child.setFullYear(selectedDate1child.getFullYear() - 12);
-                    selectedDate1child1.setFullYear(selectedDate1child1.getFullYear() - 2);
-                    selectedDate1child.setDate(selectedDate1child.getDate() + 1);
-            
-                    minchildDate = selectedDate1child.toISOString().split('T')[0];
-                    maxchildDate = selectedDate1child1.toISOString().split('T')[0];
-                }
-                if(tripcount === 3){
-                    const selectedDate2child = new Date(selectedDate2);
-                    const selectedDate2child1 = new Date(selectedDate2);
-            
-                    selectedDate2child.setFullYear(selectedDate2child.getFullYear() - 12);
-                    selectedDate2child1.setFullYear(selectedDate2child1.getFullYear() - 2);
-                    selectedDate2child.setDate(selectedDate2child.getDate() + 1);
-            
-                    minchildDate = selectedDate2child.toISOString().split('T')[0];
-                    maxchildDate = selectedDate2child1.toISOString().split('T')[0];
-                }
-                if(tripcount === 4){
-                    const selectedDate3child = new Date(selectedDate3);
-                    const selectedDate3child1 = new Date(selectedDate3);
-            
-                    selectedDate3child.setFullYear(selectedDate3child.getFullYear() - 12);
-                    selectedDate3child1.setFullYear(selectedDate3child1.getFullYear() - 2);
-                    selectedDate3child.setDate(selectedDate3child.getDate() + 1);
-            
-                    minchildDate = selectedDate3child.toISOString().split('T')[0];
-                    maxchildDate = selectedDate3child1.toISOString().split('T')[0];
-                }
-                if(tripcount === 5){
-                    const selectedDate4child = new Date(selectedDate4);
-                    const selectedDate4child1 = new Date(selectedDate4);
-            
-                    selectedDate4child.setFullYear(selectedDate4child.getFullYear() - 12);
-                    selectedDate4child1.setFullYear(selectedDate4child1.getFullYear() - 2);
-                    selectedDate4child.setDate(selectedDate4child.getDate() + 1);
-            
-                    minchildDate = selectedDate4child.toISOString().split('T')[0];
-                    maxchildDate = selectedDate4child1.toISOString().split('T')[0];
-                }
-            }
-
             items.push(
                 <div key={i}>
                     <div className='row'>
@@ -606,7 +413,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     </div>
                     <div className='row gray'>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Title</label>
+                            <label style={{fontSize:"16px"}}>Title<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <div className="input-group input-from mb-3">
                                 <select className="form-control" required>
                                     <option className="font-medium font-size-small gray mar-b-1 mob-top" value="">Select</option>
@@ -619,12 +426,12 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>First Name</label>
+                            <label style={{fontSize:"16px"}}>First Name<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <input type='text' className="form-control" style={{height:"38px"}} placeholder='First Name' required/>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Last Name</label>
-                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='Last Name' required/>
+                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='Last Name'/>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Middle Name</label>
@@ -633,7 +440,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     </div>
                     <div className='row gray'>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Gender</label>
+                            <label style={{fontSize:"16px"}}>Gender<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <div className="input-group input-from mb-3">
                                 <select className="form-control" required>
                                     <option className="font-medium font-size-small gray mar-b-1 mob-top" value="">Select</option>
@@ -647,12 +454,8 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>DOB</label>
-                            <input type='date' className='form-control' style={{ height: '38px' }} min={minchildDate} max={maxchildDate} value={dob1 || ''} onChange={(e) => handleDateChangechild(i, e.target.value)} required/>
-                        </div>
-                        <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Age</label>
-                            <input type="text" className="form-control" style={{height:"38px"}} placeholder='Age' value={agechild} readOnly />
+                            <label style={{fontSize:"16px"}}>Age<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
+                            <input type="number" className="form-control" style={{height:"38px"}} min="2" max="11" placeholder='Age' required onInvalid={(e) => e.target.setCustomValidity('Child age must be between 2 and 11.')} onInput={(e) => e.target.setCustomValidity('')} />
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Nationality</label>
@@ -918,29 +721,25 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-lg-6 col-md-12 col-sm-12'>
                             <div className='row'>
                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                <label style={{ fontSize: "16px" }}>Passport No</label>
+                                <label style={{ fontSize: "16px" }}>Passport No<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                 <input type='text' className="form-control passport-input" style={{ height: "38px" }} placeholder='Passport No'/>
                             </div>
                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                <label style={{ fontSize: "16px" }}>Expiry Date</label>
+                                <label style={{ fontSize: "16px" }}>Expiry Date<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                 <input type='date' className='form-control expiry-input' min={minexpirydate} style={{ height: '38px' }}/>
                             </div>
                             </div>
                         </div>
                     </div>
                 </div>
-           );
+            );
         }            
         return items;
-    };  
+    };
     
-    // Iterating Infant Fields according to the no. of infant selected on page 1
     const renderInfant = () => {
         const items = [];
         for (let i = 0; i < infant; i++) {
-            const dob2 = formFieldsinfant[i];
-            const ageObj = calculateAge2(dob2);
-            const formattedAge = formatAge(ageObj);
             const nationality = (e, nationalityId) => {
                 const nationality1 = e.target.value;
                 const nationalityRow = document.getElementById(`showinfantnationality-${nationalityId}`);
@@ -956,60 +755,6 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                   expiryField.required = false;
                 }
             };
-
-            if(triptype === 'One Way Trip'){
-                const owDateinfant = new Date(owDate);
-
-                owDateinfant.setFullYear(owDateinfant.getFullYear() - 2);
-                owDateinfant.setDate(owDateinfant.getDate() + 1);
-        
-                var mininfantDate = owDateinfant.toISOString().split('T')[0];
-            }
-        
-            if(triptype === 'Round Trip'){
-                const rt2Dateinfant = new Date(rt2Date);
-
-                rt2Dateinfant.setFullYear(rt2Dateinfant.getFullYear() - 2);
-                rt2Dateinfant.setDate(rt2Dateinfant.getDate() + 1);
-        
-                mininfantDate = rt2Dateinfant.toISOString().split('T')[0];
-            }
-        
-            if(triptype === 'Multiple Trip'){
-                if(tripcount === 2){
-                    const selectedDate1infant = new Date(selectedDate1);
-
-                    selectedDate1infant.setFullYear(selectedDate1infant.getFullYear() - 2);
-                    selectedDate1infant.setDate(selectedDate1infant.getDate() + 1);
-            
-                    mininfantDate = selectedDate1infant.toISOString().split('T')[0];
-                }
-                if(tripcount === 3){
-                    const selectedDate2infant = new Date(selectedDate2);
-
-                    selectedDate2infant.setFullYear(selectedDate2infant.getFullYear() - 2);
-                    selectedDate2infant.setDate(selectedDate2infant.getDate() + 1);
-            
-                    mininfantDate = selectedDate2infant.toISOString().split('T')[0];
-                }
-                if(tripcount === 4){
-                    const selectedDate3infant = new Date(selectedDate3);
-
-                    selectedDate3infant.setFullYear(selectedDate3infant.getFullYear() - 2);
-                    selectedDate3infant.setDate(selectedDate3infant.getDate() + 1);
-            
-                    mininfantDate = selectedDate3infant.toISOString().split('T')[0];
-                }
-                if(tripcount === 5){
-                    const selectedDate4infant = new Date(selectedDate4);
-
-                    selectedDate4infant.setFullYear(selectedDate4infant.getFullYear() - 2);
-                    selectedDate4infant.setDate(selectedDate4infant.getDate() + 1);
-            
-                    mininfantDate = selectedDate4infant.toISOString().split('T')[0];  
-                }
-            }
-
             items.push(
                 <div key={i}>
                     <div className='row'>
@@ -1019,7 +764,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     </div>
                     <div className='row gray'>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Title</label>
+                            <label style={{fontSize:"16px"}}>Title<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <div className="input-group input-from mb-3">
                                 <select className="form-control" required>
                                     <option className="font-medium font-size-small gray mar-b-1 mob-top" value="">Select</option>
@@ -1032,12 +777,12 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>First Name</label>
+                            <label style={{fontSize:"16px"}}>First Name<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <input type='text' className="form-control" style={{height:"38px"}} placeholder='First Name' required/>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Last Name</label>
-                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='Last Name' required/>
+                            <input type='text' className="form-control" style={{height:"38px"}} placeholder='Last Name'/>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Middle Name</label>
@@ -1046,7 +791,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     </div>
                     <div className='row gray'>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Gender</label>
+                            <label style={{fontSize:"16px"}}>Gender<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                             <div className="input-group input-from mb-3">
                                 <select className="form-control" required>
                                     <option className="font-medium font-size-small gray mar-b-1 mob-top" value="">Select</option>
@@ -1060,12 +805,8 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             </div>
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>DOB</label>
-                            <input type='date' className='form-control' style={{ height: '38px' }} min={mininfantDate} value={dob2 || ''} onChange={(e) => handleDateChangeinfant(i, e.target.value)} required/>
-                        </div>
-                        <div className='col-lg-3 col-md-12 col-sm-12'>
-                            <label style={{fontSize:"16px"}}>Age</label>
-                            <input type="text" className="form-control" style={{height:"38px"}} placeholder='Age' value={formattedAge} readOnly />
+                            <label style={{fontSize:"16px"}}>Age<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
+                            <input type="number" className="form-control" style={{height:"38px"}} max="1" placeholder='Age' required onInvalid={(e) => e.target.setCustomValidity('Infant age must be less than 2.')} onInput={(e) => e.target.setCustomValidity('')} />
                         </div>
                         <div className='col-lg-3 col-md-12 col-sm-12'>
                             <label style={{fontSize:"16px"}}>Nationality</label>
@@ -1331,34 +1072,39 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-lg-6 col-md-12 col-sm-12'>
                             <div className='row'>
                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                <label style={{ fontSize: "16px" }}>Passport No</label>
+                                <label style={{ fontSize: "16px" }}>Passport No<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                 <input type='text' className="form-control passport-input" style={{ height: "38px" }} placeholder='Passport No'/>
                             </div>
                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                <label style={{ fontSize: "16px" }}>Expiry Date</label>
+                                <label style={{ fontSize: "16px" }}>Expiry Date<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                 <input type='date' className='form-control expiry-input' min={minexpirydate} style={{ height: '38px'}} />
                             </div>
                             </div>
                         </div>
                     </div>
                 </div>
-           );
+            );
         }            
         return items;
     };
 
-    // Trip Summary Content...
     let rendertrip;
+    let grandtotal;
+    let discount = 0;
+    let finalcost;
     let minexpirydate;
     if(triptype === 'One Way Trip'){
         minexpirydate = owDate;
+        grandtotal = totalfare;
+        discount = (grandtotal*10)/100;
+        finalcost = grandtotal - discount;
         rendertrip = <>
             <div className='container' id='travellers-details' style={{width:"145%"}}>
                 <div className='row'>
                     <div className='col-3'>
                         <h6>Trip - 1:</h6>
                     </div>
-                    <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                    <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                         <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{owfrom} &rarr; {owto}</h6>
                     </div>
                 </div>
@@ -1375,7 +1121,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Time:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTime} to {arrivalTime}</h6>
                     </div>
                 </div>
                 <div className='row'>
@@ -1383,7 +1129,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Ferry:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryName}({selectedamenitie})</h6>
                     </div>
                 </div>
                 <div className='row'>
@@ -1391,21 +1137,25 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Total fare:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultprice} + {child}(Child) X {childprice} = {totalfare}</h6>
                     </div>
                 </div>
             </div>
         </>
     }
     else if(triptype === 'Round Trip'){
+        document.getElementById("hidetravellersdetails").style.height = "max-content";
         minexpirydate = rt2Date;
+        grandtotal = totalfarert1 + totalfarert2;
+        discount = (grandtotal*10)/100;
+        finalcost = grandtotal - discount;
         rendertrip = <>
             <div className='container' id='travellers-details' style={{width:"145%"}}>
                 <div className='row'>
                     <div className='col-3'>
                         <h6>Trip - 1:</h6>
                     </div>
-                    <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                    <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                         <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{rtfrom} &rarr; {rtto}</h6>
                     </div>
                 </div>
@@ -1422,7 +1172,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Time:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimert1} to {arrivalTimert1}</h6>
                     </div>
                 </div>
                 <div className='row'>
@@ -1430,7 +1180,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Ferry:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamert1}({selectedamenitiert1})</h6>
                     </div>
                 </div>
                 <div className='row'>
@@ -1438,7 +1188,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Total fare:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricert1} + {child}(Child) X {childpricert1} = {totalfarert1}</h6>
                     </div>
                 </div>
             </div>
@@ -1447,7 +1197,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                     <div className='col-3'>
                         <h6>Trip - 2:</h6>
                     </div>
-                    <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                    <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                         <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{rtto} &rarr; {rtfrom}</h6>
                     </div>
                 </div>
@@ -1464,7 +1214,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Time:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimert2} to {arrivalTimert2}</h6>
                     </div>
                 </div>
                 <div className='row'>
@@ -1472,7 +1222,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Ferry:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamert2}({selectedamenitiert2})</h6>
                     </div>
                 </div>
                 <div className='row'>
@@ -1480,22 +1230,26 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <p style={{float:"right"}}>Total fare:</p>
                     </div>
                     <div className='col'>
-                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                        <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricert2} + {child}(Child) X {childpricert2} = {totalfarert2}</h6>
                     </div>
                 </div>
             </div>
         </>
     }
     else if(triptype === 'Multiple Trip'){
+        document.getElementById("hidetravellersdetails").style.height = "max-content";
         if(tripcount === 2){
             minexpirydate = selectedDate1;
+            grandtotal = totalfaremt1 + totalfaremt2;
+            discount = (grandtotal*10)/100;
+            finalcost = grandtotal - discount;
             rendertrip = <>
                 <div className='container' id='travellers-details' style={{width:"145%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 1:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{from} &rarr; {to}</h6>
                         </div>
                     </div>
@@ -1512,7 +1266,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt1} to {arrivalTimemt1}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1520,7 +1274,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt1}({selectedamenitiemt1})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1528,7 +1282,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt1} + {child}(Child) X {childpricemt1} = {totalfaremt1}</h6>
                         </div>
                     </div>
                 </div>
@@ -1537,7 +1291,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 2:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to} &rarr; {to1}</h6>
                         </div>
                     </div>
@@ -1554,7 +1308,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt2} to {arrivalTimemt2}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1562,7 +1316,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt2}({selectedamenitiemt2})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1570,7 +1324,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt2} + {child}(Child) X {childpricemt2} = {totalfaremt2}</h6>
                         </div>
                     </div>
                 </div>
@@ -1578,13 +1332,16 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
         }
         else if(tripcount === 3){
             minexpirydate = selectedDate2;
+            grandtotal = totalfaremt1 + totalfaremt2 + totalfaremt3;
+            discount = (grandtotal*10)/100;
+            finalcost = grandtotal - discount;
             rendertrip = <>
                 <div className='container' id='travellers-details' style={{width:"145%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 1:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{from} &rarr; {to}</h6>
                         </div>
                     </div>
@@ -1601,7 +1358,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt1} to {arrivalTimemt1}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1609,7 +1366,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt1}({selectedamenitiemt1})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1617,7 +1374,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt1} + {child}(Child) X {childpricemt1} = {totalfaremt1}</h6>
                         </div>
                     </div>
                 </div>
@@ -1626,7 +1383,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 2:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to} &rarr; {to1}</h6>
                         </div>
                     </div>
@@ -1643,7 +1400,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt2} to {arrivalTimemt2}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1651,7 +1408,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt2}({selectedamenitiemt2})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1659,16 +1416,16 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt2} + {child}(Child) X {childpricemt2} = {totalfaremt2}</h6>
                         </div>
                     </div>
-                </div>
+                </div>                
                 <div className='container' id='travellers-details' style={{width:"145%", marginTop:"5%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 3:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to1} &rarr; {to2}</h6>
                         </div>
                     </div>
@@ -1685,7 +1442,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt3} to {arrivalTimemt3}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1693,7 +1450,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt3}({selectedamenitiemt3})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1701,7 +1458,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt3} + {child}(Child) X {childpricemt3} = {totalfaremt3}</h6>
                         </div>
                     </div>
                 </div>
@@ -1709,13 +1466,16 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
         }
         else if(tripcount === 4){
             minexpirydate = selectedDate3;
+            grandtotal = totalfaremt1 + totalfaremt2 + totalfaremt3 + totalfaremt4;
+            discount = (grandtotal*10)/100;
+            finalcost = grandtotal - discount;
             rendertrip = <>
                 <div className='container' id='travellers-details' style={{width:"145%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 1:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{from} &rarr; {to}</h6>
                         </div>
                     </div>
@@ -1732,7 +1492,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt1} to {arrivalTimemt1}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1740,7 +1500,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt1}({selectedamenitiemt1})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1748,7 +1508,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt1} + {child}(Child) X {childpricemt1} = {totalfaremt1}</h6>
                         </div>
                     </div>
                 </div>
@@ -1757,7 +1517,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 2:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to} &rarr; {to1}</h6>
                         </div>
                     </div>
@@ -1774,7 +1534,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt2} to {arrivalTimemt2}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1782,7 +1542,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt2}({selectedamenitiemt2})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1790,16 +1550,16 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt2} + {child}(Child) X {childpricemt2} = {totalfaremt2}</h6>
                         </div>
                     </div>
-                </div>
+                </div>                
                 <div className='container' id='travellers-details' style={{width:"145%", marginTop:"5%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 3:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to1} &rarr; {to2}</h6>
                         </div>
                     </div>
@@ -1816,7 +1576,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt3} to {arrivalTimemt3}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1824,7 +1584,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt3}({selectedamenitiemt3})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1832,7 +1592,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt3} + {child}(Child) X {childpricemt3} = {totalfaremt3}</h6>
                         </div>
                     </div>
                 </div>
@@ -1841,7 +1601,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 4:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to2} &rarr; {to3}</h6>
                         </div>
                     </div>
@@ -1858,7 +1618,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt4} to {arrivalTimemt4}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1866,7 +1626,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt4}({selectedamenitiemt4})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1874,7 +1634,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt4} + {child}(Child) X {childpricemt4} = {totalfaremt4}</h6>
                         </div>
                     </div>
                 </div>
@@ -1882,13 +1642,16 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
         }
         else if(tripcount === 5){
             minexpirydate = selectedDate4;
+            grandtotal = totalfaremt1 + totalfaremt2 + totalfaremt3 + totalfaremt4 + totalfaremt5;
+            discount = (grandtotal*10)/100;
+            finalcost = grandtotal - discount;
             rendertrip = <>
                 <div className='container' id='travellers-details' style={{width:"145%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 1:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{from} &rarr; {to}</h6>
                         </div>
                     </div>
@@ -1905,7 +1668,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt1} to {arrivalTimemt1}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1913,7 +1676,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt1}({selectedamenitiemt1})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1921,7 +1684,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt1} + {child}(Child) X {childpricemt1} = {totalfaremt1}</h6>
                         </div>
                     </div>
                 </div>
@@ -1930,7 +1693,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 2:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to} &rarr; {to1}</h6>
                         </div>
                     </div>
@@ -1947,7 +1710,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt2} to {arrivalTimemt2}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1955,7 +1718,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt2}({selectedamenitiemt2})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1963,16 +1726,16 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt2} + {child}(Child) X {childpricemt2} = {totalfaremt2}</h6>
                         </div>
                     </div>
-                </div>
+                </div>                
                 <div className='container' id='travellers-details' style={{width:"145%", marginTop:"5%"}}>
                     <div className='row'>
                         <div className='col-3'>
                             <h6>Trip - 3:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to1} &rarr; {to2}</h6>
                         </div>
                     </div>
@@ -1989,7 +1752,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt3} to {arrivalTimemt3}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -1997,7 +1760,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt3}({selectedamenitiemt3})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -2005,7 +1768,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt3} + {child}(Child) X {childpricemt3} = {totalfaremt3}</h6>
                         </div>
                     </div>
                 </div>
@@ -2014,7 +1777,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 4:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to2} &rarr; {to3}</h6>
                         </div>
                     </div>
@@ -2031,7 +1794,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt4} to {arrivalTimemt4}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -2039,7 +1802,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt4}({selectedamenitiemt4})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -2047,7 +1810,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt4} + {child}(Child) X {childpricemt4} = {totalfaremt4}</h6>
                         </div>
                     </div>
                 </div>
@@ -2056,7 +1819,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                         <div className='col-3'>
                             <h6>Trip - 5:</h6>
                         </div>
-                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#05f5ed",textAlign:"center", marginLeft:"-4%"}}>
+                        <div className='col' style={{textTransform:"uppercase", backgroundColor:"#e6f7ff",textAlign:"center", marginLeft:"-4%"}}>
                             <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{to3} &rarr; {to4}</h6>
                         </div>
                     </div>
@@ -2073,7 +1836,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Time:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>Time</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{departureTimemt5} to {arrivalTimemt5}</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -2081,7 +1844,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Ferry:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>ferry</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{ferryNamemt5}({selectedamenitiemt5})</h6>
                         </div>
                     </div>
                     <div className='row'>
@@ -2089,7 +1852,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                             <p style={{float:"right"}}>Total fare:</p>
                         </div>
                         <div className='col'>
-                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>date</h6>
+                            <h6 style={{fontSize:"13px",paddingTop:"5px",float:"left"}}>{adults}(Adult) X {adultpricemt5} + {child}(Child) X {childpricemt5} = {totalfaremt5}</h6>
                         </div>
                     </div>
                 </div>
@@ -2099,7 +1862,7 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
     
     return (
         <>
-            <div style={{backgroundColor:"rgb(246, 246, 250)",height:"max-content"}} id='hidetravellersdetails'>
+            <div style={{backgroundColor:"#e6f7ff",height:"100%"}} id='hidetravellersdetails'>
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
@@ -2123,17 +1886,17 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                                                     <div action='' id='travellers-details'>
                                                         <div className='row'>
                                                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                                                <label className='gray' style={{fontSize:"14px"}}>Full Name</label>
+                                                                <label className='gray' style={{fontSize:"14px"}}>Full Name<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                                                 <input type='text' className="form-control" style={{height:"38px"}} placeholder='First Name' required />
                                                             </div>
                                                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                                                <label className='gray' style={{fontSize:"14px"}}>Email</label>
-                                                                <input type='email' pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.*" className="form-control" style={{height:"38px"}} placeholder='Email' required onInvalid={(e) => e.target.setCustomValidity('Please enter a valid email address with a dot.')} onInput={(e) => e.target.setCustomValidity('')} />
+                                                                <label className='gray' style={{fontSize:"14px"}}>Email<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
+                                                                <input type='email' pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.*" className="form-control" style={{height:"38px"}} placeholder='Email' required onInvalid={(e) => e.target.setCustomValidity('Please provide a valid email address.')} onInput={(e) => e.target.setCustomValidity('')} />
                                                             </div>
                                                         </div>
                                                         <div className='row' style={{marginTop:"1%"}}>
                                                             <div className='col-lg-6 col-md-12 col-sm-12'>
-                                                                <label className='gray'>Mobile No</label>
+                                                                <label className='gray'>Mobile No<sup style={{color:"red", fontSize:"14px"}}>&nbsp;*</sup></label>
                                                                 <div className="form-group">
                                                                     <div className="row">
                                                                         <div className="col-4">
@@ -3137,29 +2900,61 @@ const Travellersdetail = ({adults, child, infant, owfrom, owto, rtfrom, rtto, fr
                                                             <div className='col-12'>                
                                                                 <div className="mar-t-4 mar-b-4 term-condition-text">
                                                                     <p style={{}}>
-                                                                        <input type="checkbox" required /> 
+                                                                        <input type="checkbox" required onInvalid={(e) => e.target.setCustomValidity('Please accept this to Proceed.')} onInput={(e) => e.target.setCustomValidity('')} /> 
                                                                         <span>&nbsp;Agree with <a href="/" style={{textDecoration:"none"}}>terms and conditions </a> and the <a href="/" style={{textDecoration:"none"}}>cancellation policy.</a></span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="text-center">
+                                                        {/* <div className="text-center">
                                                             <button type="submit" style={{backgroundColor:"#01b46c", fontWeight:"700", fontSize:"18px"}} className="btn btn-secondary billing-proceed font-bold" value="PROCEED">PROCEED</button>
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className="text-center">
+                                            <button type="submit" style={{backgroundColor:"#01b46c", fontWeight:"700", fontSize:"18px"}} className="btn btn-secondary billing-proceed font-bold" value="PROCEED">PROCEED</button>
+                                        </div>
                                     </form>
                                     <div className='col-lg-3 col-md-12 col-sm-12 hide'>
                                         <h2>Trip Summary</h2>
-                                        {rendertrip}
+                                        <div>
+                                            {rendertrip}
+                                        </div>
+                                        <div className='container' id='travellers-details' style={{width:"145%", marginBottom:"5%", marginTop:"1%"}}>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Totalfare =</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <h6>Rs {grandtotal}</h6>
+                                                </div>
+                                            </div>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Discount =</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <h6>Rs {discount}</h6>
+                                                </div>
+                                            </div>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Grandtotal =</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <h6>Rs {finalcost}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>               
+                </div>
+                
             </div>
             <div id='showpaymentpage' style={{display:"none"}}>
                 {<PaymentGatewayPage />}
